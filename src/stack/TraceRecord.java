@@ -38,10 +38,10 @@ public class TraceRecord {
 			return;
 		}
 		newNode = first;
-		while(first.next != last) {
+		while(newNode.next != last) {
 			newNode = newNode.next;
+			newNode.next=last.next;
+			last = newNode;
 		}
-		first.next = last.next;
-		last = newNode;
 	}
 }

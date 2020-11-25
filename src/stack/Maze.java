@@ -46,21 +46,46 @@ public class Maze {
 				y = y+1;
 				path.insert(x, y);
 			}else if(Maze[x-1][y] == 0) {
-				x-=x;
+				x-=1;
 				path.insert(x, y);
 			}else if(Maze[x+1][y] == 0) {
-				x+=x;
+				x+=1;
 				path.insert(x, y);
+			}else if((checkExit(x,y,exitx, exity)) == 1 ) {
+				break;
+			}else {
+				Maze[x][y] =2;
+				path.delete(x,y);
+				x=path.last.x;
+				y=path.last.y;
 			}
-			}
-		System.out.println("走過的路徑 : ");
-//		for (i=0; i<11; i++) {
-//			for(j=0; j<12; j++) {
-//				System.out.print(Maze[i][j]);
-//			}
-//			System.out.println();
-//		}
+		}
 		
+		System.out.println("走過的路徑 : ");
+		for (i=0; i<11; i++) {
+			for(j=0; j<12; j++) {
+				System.out.print(Maze[i][j]);
+			}
+			System.out.println();
+		}		
 }
+	public static  int checkExit(int x, int y, int ex, int ey) {
+		if(x == ex && y == ey) {
+			if(Maze[x-1][y] == 1 || Maze[x+1][y] == 1 || Maze[x][y+1] == 1 || Maze[x][y-1] == 2) {
+				return 1;
+			}
+			if(Maze[x-1][y] == 1 || Maze[x+1][y] == 1 || Maze[x][y+1] == 2 || Maze[x][y-1] == 1) {
+				return 1;
+			}
+			if(Maze[x-1][y] == 1 || Maze[x+1][y] == 2 || Maze[x][y+1] == 1 || Maze[x][y-1] == 1) {
+				return 1;
+			}
+			if(Maze[x-1][y] == 2 || Maze[x+1][y] == 1 || Maze[x][y+1] == 1 || Maze[x][y-1] == 1) {
+				return 1;
+			}
+		}
+		return 0;
+	
+	}
 }
 
