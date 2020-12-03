@@ -10,29 +10,29 @@ public class ShellSort {
 		for(int i=0; i< number.length; i++) {
 			System.out.print(number[i]+" ");
 		}
-		
-		int jmp = number.length/2;
-		while(jmp > 0) {
-			for (int i=jmp; i<number.length; i++) {
-				int tmp = number[i];
-				int j=i;
-				
-				while(j >= jmp && number[j-jmp] > tmp) {
-					number[j] = number[j-jmp];
-					j=j-jmp;
+		for (int jmp= number.length/2; jmp>0; jmp=jmp/2) {
+			for (int j=jmp; j<number.length; j++) {
+				for (int k=j-jmp; k >= 0; k=k-jmp) {
+					if(number[k+jmp] > number[k]) {
+						break;
+					}else {
+						int tmp = number[k];
+						number[k] = number[k+jmp];
+						number[k+jmp] = tmp;
+					}
 				}
-				number[j] = tmp;
-			}
-			if(jmp == 2) {
-				jmp = 1;
-			}else {
-				jmp = jmp*(5/11);
 			}
 		}
-		
+		System.out.println();
+		System.out.println("排序後 : ");
+		for(int i=0; i<number.length; i++) {
+			System.out.print(number[i]+" ");
+		}
+	}
 
+}
 
-//		
+	
 //		int jmp; //兼具位移量
 //		jmp = number.length/2;
 //		while(jmp != 0) {
@@ -60,11 +60,4 @@ public class ShellSort {
 //			}
 //			jmp=jmp/2;
 //		}
-		System.out.println();
-		System.out.println("排序後 : ");
-		for(int i=0; i<number.length; i++) {
-			System.out.print(number[i]+" ");
-		}
-	}
 
-}
