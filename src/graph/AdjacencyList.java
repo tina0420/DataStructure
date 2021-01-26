@@ -5,13 +5,14 @@ import java.io.IOException;
 public class AdjacencyList {
 	
 	class Node{
-		int x;
+		int value;
 		Node next;
-		public Node(int x) {
-			x = this.x;
+		public Node(int value) {
+			value = this.value;
 			this.next = null;
 		}
 	}
+	//connection的部分
 	class Graph{
 		public Node first;
 		public Node last;
@@ -23,14 +24,14 @@ public class AdjacencyList {
 		public void print() {
 			Node current = first;
 			while(current != null) {
-				System.out.print("["+ current.x +"]");
+				System.out.print("["+ current.value +"]");
 				current = current.next;
 			}
 			System.out.println();
 		}
-		//insert方法
-		public void insert(int x) {
-			Node newNode = new Node(x);
+		//insert方法，網連結中插入結點
+		public void insert(int value) {
+			Node newNode = new Node(value);
 			if(this.isEmpty()) {
 				first = newNode;
 				last = newNode;
@@ -55,7 +56,7 @@ public class AdjacencyList {
 			System.out.print("頂點"+i+"-->");
 			for (int j=0;j<=13; j++) {
 				if(data[j][0] == i) {
-					head[i].insert(number);
+					head[i].insert();
 				}
 			}
 			head[i].print();
