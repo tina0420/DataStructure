@@ -53,6 +53,38 @@ public class LinkedListOrigin {
             }
         }
 
+        //把節點刪掉 delete()
+        public void delete(Node delNode){
+            Node newNode;
+            //暫時存的Node
+            Node tmp;
+
+            //刪除LinkedList的第一個節點
+            if(first.number == delNode.number){
+                first.next = first;
+            }else
+                //刪除LinkedList的最後一個節點
+                if(last.number == delNode.number){
+                    System.out.println("I'm here!");
+                    //從頭開始往後一個一個算，直到算到last前面一個停下來
+                    newNode = first;
+                    while(newNode.next != last){
+                        newNode = newNode.next;
+                    }
+                    newNode.next = last.next;
+                    last = newNode;
+                }
+            else{
+                newNode = first;
+                tmp = first;
+                while(newNode.number != last.number){
+                    tmp = newNode;
+                    newNode = newNode.next;
+                }
+                tmp.next = delNode.next;
+            }
+        }
+
     }
 
 }
